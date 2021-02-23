@@ -1,6 +1,6 @@
 {
   "name": "@emurgo/cip14-js",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "A Javascript library reference implementation for CIP14",
   "main": "./index.js",
   "types": "./index.d.ts",
@@ -19,7 +19,7 @@
       "pre-push": "npm run verify"
     }
   },
-  "license": "Apache-2.0",
+  "license": "Apache-2.0 OR MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Emurgo/cip14-js.git"
