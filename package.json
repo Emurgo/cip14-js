@@ -1,0 +1,46 @@
+{
+  "name": "@emurgo/cip14-js",
+  "version": "1.0.0",
+  "description": "A Javascript library reference implementation for CIP14",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "scripts": {
+    "build": "npm run clean && tsc && npm run flowgen && npm run copy-misc",
+    "clean": "rm -rf ./dist/",
+    "copy-misc": "cp package.json dist/ && cp README.md dist/",
+    "eslint": "eslint ./index.ts ./tests/index.test.ts",
+    "flowgen": "flowgen ./dist/index.d.ts --no-inexact --add-flow-header -o dist/index.js.flow",
+    "npm-publish": "npm run verify && npm run build && cd dist && npm publish --access public --dry-run && cd ..",
+    "test": "tsc --noEmit && jest",
+    "verify": "npm run eslint && npm run test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run verify"
+    }
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Emurgo/CIP14.git"
+  },
+  "author": "EMURGO",
+  "homepage": "https://github.com/Emurgo/CIP14#readme",
+  "dependencies": {
+    "bech32": "2.0.0",
+    "blake2b": "2.1.3"
+  },
+  "devDependencies": {
+    "@types/jest": "26.0.20",
+    "@typescript-eslint/eslint-plugin": "4.15.2",
+    "@typescript-eslint/parser": "4.15.2",
+    "eslint": "7.20.0",
+    "flowgen": "1.13.0",
+    "husky": "5.1.1",
+    "jest": "26.6.3",
+    "prettier": "2.2.1",
+    "ts-jest": "26.5.1",
+    "tslint": "6.1.3",
+    "typescript": "4.1.5"
+  }
+}
