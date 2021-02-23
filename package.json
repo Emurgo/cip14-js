@@ -1,6 +1,6 @@
 {
   "name": "@emurgo/cip14-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Javascript library reference implementation for CIP14",
   "main": "./index.js",
   "types": "./index.d.ts",
@@ -22,10 +22,10 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Emurgo/CIP14.git"
+    "url": "git+https://github.com/Emurgo/cip14-js.git"
   },
   "author": "EMURGO",
-  "homepage": "https://github.com/Emurgo/CIP14#readme",
+  "homepage": "https://github.com/Emurgo/cip14-js#readme",
   "dependencies": {
     "bech32": "2.0.0",
     "blake2b": "2.1.3"
