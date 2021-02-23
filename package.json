@@ -10,7 +10,7 @@
     "copy-misc": "cp package.json dist/ && cp README.md dist/",
     "eslint": "eslint ./index.ts ./tests/index.test.ts",
     "flowgen": "flowgen ./dist/index.d.ts --no-inexact --add-flow-header -o dist/index.js.flow",
-    "npm-publish": "npm run verify && npm run build && cd dist && npm publish --access public --dry-run && cd ..",
+    "npm-publish": "npm run verify && npm run build && cd dist && npm publish --access public && cd ..",
     "test": "tsc --noEmit && jest",
     "verify": "npm run eslint && npm run test"
   },
