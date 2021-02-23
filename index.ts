@@ -30,17 +30,16 @@ export default class assetFingerprint {
     return this;
   }
 
-  get fingerprint(): string {
+  fingerprint(): string {
     const words = bech32.toWords(this.hashBuf);
     return bech32.encode(DATA, words);
   }
 
-  get hash(): string {
-    console.log(Buffer.from(this.hashBuf).toString('hex'));
+  hash(): string {
     return Buffer.from(this.hashBuf).toString('hex');
   }
 
-  get prefix(): string {
+  prefix(): string {
     return DATA;
   }
 }
