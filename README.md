@@ -5,3 +5,29 @@ On the Cardano blockchain, native assets are uniquely identified by both their _
 More specifically, CIP14 defines a user-facing asset fingerprint as a bech32-encoded blake2b-160 digest of the concatenation of the policy id and the asset name.
 
 This package is a Typescript implementation of CIP14
+
+## Install
+
+``` sh
+npm i @emurgo/cip14-js --save
+```
+
+## Usage
+
+```js
+const AssetFingerprint = require('@emurgo/cip14-js');
+
+// initialize class with policyId, assetName
+const assetFingerprint = new AssetFingerprint(Buffer.from('1e349c9bdea19fd6c147626a5260bc44b71635f398b67c59881df209', 'hex'), Buffer.from('504154415445', 'hex'));
+
+const fingerprintHash = assetFingerprint.hash();
+const bech32Fingerprint = assetFingerprint.fingerprint();
+```
+
+```js
+// initialize class with bech32
+const assetFingerprint = new AssetFingerprint().fromBech32('asset1rjklcrnsdzqp65wjgrg55sy9723kw09mlgvlc3');
+
+const fingerprintHash = assetFingerprint.hash();
+const prefix = assetFingerprint.prefix();
+```
