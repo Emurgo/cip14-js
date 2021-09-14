@@ -1,6 +1,6 @@
 {
   "name": "@emurgo/cip14-js",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A Javascript library reference implementation for CIP14",
   "main": "./index.js",
   "types": "./index.d.ts",
