@@ -5,29 +5,37 @@ import { bech32 } from "bech32";
 
 const DATA = "asset";
 
-export default class assetFingerprint {
-  hashBuf: Uint8Array;
+export default class AssetFingerprint {
+  readonly hashBuf: Uint8Array;
 
-  constructor(policyId: Uint8Array = new Uint8Array(32), assetName: Uint8Array = new Uint8Array(0)) {
+  private constructor(hashBuf: Uint8Array) {
+    this.hashBuf = hashBuf;
+  }
+
+  static fromHash(hash: Uint8Array): AssetFingerprint {
+    return new AssetFingerprint(hash);
+  }
+
+  static fromParts(
+    policyId: Uint8Array,
+    assetName: Uint8Array
+  ): AssetFingerprint {
     // see https://github.com/cardano-foundation/CIPs/pull/64
-    this.hashBuf = blake2b(20)
+    const hashBuf = blake2b(20)
       .update(new Uint8Array([...policyId, ...assetName]))
       .digest("binary");
+
+    return AssetFingerprint.fromHash(hashBuf);
   }
 
-  fromHash(hash: Buffer): this {
-    this.hashBuf = hash
-    return this;
-  }
-
-  fromBech32(fingerprint: string): this {
+  static fromBech32(fingerprint: string): AssetFingerprint {
     const { prefix, words } = bech32.decode(fingerprint);
-    if(prefix !== DATA){
+    if (prefix !== DATA) {
       throw new Error("Invalid asset fingerprint");
     }
-    
-    this.hashBuf = Buffer.from(bech32.fromWords(words));
-    return this;
+
+    const hashBuf = Buffer.from(bech32.fromWords(words));
+    return AssetFingerprint.fromHash(hashBuf);
   }
 
   fingerprint(): string {
@@ -36,10 +44,15 @@ export default class assetFingerprint {
   }
 
   hash(): string {
-    return Buffer.from(this.hashBuf).toString('hex');
+    return Buffer.from(this.hashBuf).toString("hex");
   }
 
   prefix(): string {
     return DATA;
+  }
+
+  // The last six characters of the data part form a checksum and contain no information
+  checksum(): string {
+    return this.fingerprint().slice(-6);
   }
 }
