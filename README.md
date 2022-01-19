@@ -18,7 +18,7 @@ npm i @emurgo/cip14-js --save
 const AssetFingerprint = require('@emurgo/cip14-js');
 
 // initialize class with policyId, assetName
-const assetFingerprint = AssetFingerprint.fromParts(
+const assetFingerprint = AssetFingerprint.default.fromParts(
   Buffer.from('1e349c9bdea19fd6c147626a5260bc44b71635f398b67c59881df209', 'hex'),
   Buffer.from('504154415445', 'hex'),
 );
